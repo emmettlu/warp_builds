@@ -75,6 +75,7 @@ jobs:
         shell: bash
         working-directory: ${{ env.PROJECT_PATH }}
         run: |
+          export CARGO_FULL_PROFILE=release
           rm -f Cargo.lock
           cargo update
           cargo b -r

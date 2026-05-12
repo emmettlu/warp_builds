@@ -64,6 +64,13 @@ jobs:
         run: |
           sudo apt install -y protobuf-compiler libdbus-1-dev pkg-config
 
+      - name: Setup Protoc
+        if: runner.os == 'Windows'
+        uses: arduino/setup-protoc@v3
+        with:
+          version: "28.x"
+          include-pre-releases: true
+
       - name: Build
         shell: bash
         working-directory: ${{ env.PROJECT_PATH }}

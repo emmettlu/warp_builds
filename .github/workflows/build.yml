@@ -59,6 +59,11 @@ jobs:
           mkdir -p .cargo
           cp -f ../.cargo/config.toml .cargo
 
+      - name: Install Linux deps
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt install -y protobuf-compiler
+
       - name: Build
         shell: bash
         working-directory: ${{ env.PROJECT_PATH }}

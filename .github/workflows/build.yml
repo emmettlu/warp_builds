@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     env:
-      PROJECT_REPOSITORY: watchexec/watchexec
+      PROJECT_REPOSITORY: zerx-lab/warp
       PROJECT_VERSION: v2.3.2
       PROJECT_PATH: watchexec
       PROJECT_BIN: watchexec
@@ -49,7 +49,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           repository: ${{ env.PROJECT_REPOSITORY }}
-          ref: refs/tags/${{ env.PROJECT_VERSION }}
+          ref: refs/heads/main
           path: ${{ env.PROJECT_PATH }}
 
       - name: Copy config file
@@ -68,7 +68,7 @@ jobs:
           cargo b -r
 
       - name: Archive
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ env.PROJECT_BIN }}_${{ runner.os }}
           path: |

@@ -10,6 +10,12 @@ rustflags = [
 rustflags = [
 ]
 
+[net]
+git-fetch-with-cli = true
+
+[target.'cfg(target_family = "wasm")']
+rustflags = ["--cfg=web_sys_unstable_apis"]
+
 [profile.release]
 codegen-units = 1
 debug = false

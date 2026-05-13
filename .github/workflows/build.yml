@@ -76,7 +76,7 @@ jobs:
         working-directory: ${{ env.PROJECT_PATH }}
         run: |
           export CARGO_FULL_PROFILE=release
-          export CARGO_BIN_NAME=warp
+          export CARGO_BIN_NAME=oss
           rm -f Cargo.lock
           cargo b -r -p warp --bin warp-oss --features "release_bundle,gui,nld_improvements"
 

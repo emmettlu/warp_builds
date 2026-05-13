@@ -8,7 +8,7 @@ jobs:
   build:
     env:
       PROJECT_REPOSITORY: zerx-lab/warp
-      PROJECT_VERSION: v2.3.2
+      PROJECT_VERSION: None
       PROJECT_PATH: warp
       PROJECT_BIN: warp
     strategy:
@@ -76,9 +76,9 @@ jobs:
         working-directory: ${{ env.PROJECT_PATH }}
         run: |
           export CARGO_FULL_PROFILE=release
+          export CARGO_BIN_NAME=warp
           rm -f Cargo.lock
-          cargo update
-          cargo b -r
+          cargo b -r -p warp --bin warp-oss --features "release_bundle,gui,nld_improvements"
 
       - name: Archive
         uses: actions/upload-artifact@v6

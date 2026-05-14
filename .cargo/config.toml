@@ -1,25 +1,22 @@
 [build]
-rustflags = [
-    "-C", "target-cpu=znver3"
-]
-[target.'cfg(windows)']
-rustflags = [
-    "--cfg", "windows_slim_errors"
-]
-[target.'cfg(unix)']
-rustflags = [
-]
+rustflags = ["-C", "target-cpu=znver3"]
 
-[net]
-git-fetch-with-cli = true
+[target.'cfg(windows)']
+rustflags = ["--cfg", "windows_slim_errors"]
+
+[target.'cfg(unix)']
+rustflags = []
 
 [target.'cfg(target_family = "wasm")']
 rustflags = ["--cfg=web_sys_unstable_apis"]
+
+[net]
+git-fetch-with-cli = true
 
 [profile.release]
 codegen-units = 1
 debug = false
 lto = true
-opt-level = 's'
+opt-level = "s"
 panic = "abort"
 strip = true

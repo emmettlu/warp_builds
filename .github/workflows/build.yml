@@ -71,14 +71,26 @@ jobs:
           version: "28.x"
           include-pre-releases: true
 
+      - name: Remove Cargo.lock
+        shell: bash
+        working-directory: ${{ env.PROJECT_PATH }}
+        run: rm -f Cargo.lock
+
+      - name: Cache builds
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: ${{ env.PROJECT_PATH }}
+          save-if: true
+          cache-all-crates: true
+          key: ${{ runner.os }}-release-build
+
       - name: Build
         shell: bash
         working-directory: ${{ env.PROJECT_PATH }}
         run: |
           export CARGO_FULL_PROFILE=release
           export CARGO_BIN_NAME=oss
-          rm -f Cargo.lock
-          cargo b -r -p warp --bin warp-oss --features "release_bundle,gui,nld_improvements"
+          cargo b -r -p warp --bin warp-oss
 
       - name: Archive
         uses: actions/upload-artifact@v6

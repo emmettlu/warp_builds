@@ -90,7 +90,7 @@ jobs:
         run: |
           export CARGO_FULL_PROFILE=release
           export CARGO_BIN_NAME=oss
-          cargo b -r -p warp --bin warp-oss --features "gui"
+          cargo b -r -p warp --bin warp-oss --features "release_bundle, gui"
 
       - name: Archive
         uses: actions/upload-artifact@v6
